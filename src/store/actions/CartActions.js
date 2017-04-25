@@ -13,21 +13,22 @@ export const toggleCartState = () => ({
 
 export const listenToCart = () => {
   return (dispatch) => {
-    cartProductsRef.off();
-    cartProductsRef.on('value', snapshot => {
-      dispatch({
-        type: CART_RECEIVE_DATA,
-        payload: {
-          data: snapshot.val()
-        }
+    return cartProductsRef.once('value')
+      .then(snapshot => {
+        dispatch({
+          type: CART_RECEIVE_DATA,
+          payload: {
+            data: snapshot.val()
+          }
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type: CART_RECEIVE_DATA_ERROR,
+          payload: {
+            message: error.message
+          }
+        });
       });
-    }, error => {
-      dispatch({
-        type: CART_RECEIVE_DATA_ERROR,
-        payload: {
-          message: error.message
-        }
-      });
-    });
   };
 };

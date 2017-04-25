@@ -10,22 +10,24 @@ import styles from './Cart.res/Cart.css';
 
 const Cart = ({ cart }) => {
   return (
-    <section className={styles.visible}>
-      <div>
-        <img src={arrowLeftSVG} alt="close"/>
-        <h1>Продолжить покупки</h1>
-      </div>
+    <section className={styles.fill}>
+      <div className={styles.visible}>
+        <div>
+          <img src={arrowLeftSVG} alt="close"/>
+          <h1>Продолжить покупки</h1>
+        </div>
 
-      <div className={styles.productList}></div>
-      
-      <div className={styles.costWrapper}>
-        <span className={styles.costLabel}>
-          Сумма покупок
-        </span>
-        &#36;520.00
-      </div>
+        <div className={styles.productList}></div>
+        
+        <div className={styles.costWrapper}>
+          <span className={styles.costLabel}>
+            Сумма покупок
+          </span>
+          &#36;520.00
+        </div>
 
-      <button>Заказать товары</button>
+        <button>Заказать товары</button>
+      </div>
     </section>
   );
 };
