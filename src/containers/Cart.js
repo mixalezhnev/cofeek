@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import toggleCartState from '../store/actions/CartActions';
+import { toggleCartState } from '../store/actions/CartActions';
 
 import Cart from '../components/Cart';
 
