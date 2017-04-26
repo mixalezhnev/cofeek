@@ -4,11 +4,14 @@ import {
   CART_RECEIVE_DATA_ERROR
 } from '../constants/Cart';
 
+import { toArray } from '../../utils/helpers';
+
 const initialState = {
   state: false,
   hasReceivedData: false,
   errorMessage: '',
-  products: {}
+  products: [],
+  totalCost: 0
 }
 
 const cart = (state = initialState, action) => {
@@ -21,8 +24,9 @@ const cart = (state = initialState, action) => {
       return {
         ...state,
         hasReceivedData: true,
-        products: action.payload.data,
-        errorMessage: ''
+        products: toArray(action.payload.data),
+        errorMessage: '',
+        totalCost: toArray(action.payload.data).reduce((sum, product) => sum + product.cost, 0)
       };
     case CART_RECEIVE_DATA_ERROR:
       return {
