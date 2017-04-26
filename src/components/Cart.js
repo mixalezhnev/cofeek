@@ -9,24 +9,37 @@ import closeSVG from '../assets/images/close.svg';
 import styles from './Cart.res/Cart.css';
 
 const Cart = ({ cart }) => {
+
+  const calcCost = products => {
+    let fullCost = 0;
+
+    for(const product in products) {
+      if (products.hasOwnProperty(product)) fullCost += products[product].cost;
+    }
+
+    return fullCost;
+  }
+
   return (
-    <section className={styles.fill}>
-      <div className={styles.visible}>
-        <div>
-          <img src={arrowLeftSVG} alt="close"/>
-          <h1>Продолжить покупки</h1>
-        </div>
+    <section className={styles.fillVisible}>
+      {/* <div className={styles.fillVisible}/> */}
+      <div className={styles.panelVisible}>
+        <header className={styles.header}>
+          <div className={styles.continueShopping}>
+            <img className={styles.imageClose} src={arrowLeftSVG} alt="close"/>
+            <span className={styles.boldSpan}>Продолжить покупки</span>
+          </div>
+        </header>
 
         <div className={styles.productList}></div>
         
-        <div className={styles.costWrapper}>
+        <footer className={styles.costWrapper}>
           <span className={styles.costLabel}>
             Сумма покупок
           </span>
-          &#36;520.00
-        </div>
-
-        <button>Заказать товары</button>
+          {(Object.keys(cart.products).length > 0) ? calcCost(cart.products) : 0}руб.
+          <button>Заказать товары</button>
+        </footer>
       </div>
     </section>
   );
