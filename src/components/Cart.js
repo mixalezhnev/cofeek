@@ -20,9 +20,6 @@ const Cart = ({ cart }) => {
         </header>
 
         <section className={styles.productList}>
-          {cart.hasReceivedData
-            ? cart
-            : cart.errorMessage} 
         </section>
         
         <footer className={styles.costWrapper}>
